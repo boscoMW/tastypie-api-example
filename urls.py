@@ -1,12 +1,11 @@
 from django.conf.urls.defaults import patterns, include, url
-
-# Uncomment the next two lines to enable the admin:
+from recipes.api.api import RecipeResource
 from django.contrib import admin
 admin.autodiscover()
 
-urlpatterns = patterns('',
-    # url(r'^$', 'core.views.home', name='home'),
-    # url(r'^sampl/', include('project.foo.urls')),
+recipe_resource = RecipeResource()
 
+urlpatterns = patterns('',
+    url(r'^api/', include(recipe_resource.urls)),
     url(r'^admin/', include(admin.site.urls)),
 )
